@@ -1,17 +1,51 @@
 export type RoomStatus = 'available' | 'occupied' | 'dirty' | 'maintenance' | 'blocked';
 
-export type Room = { number: string; floor: number; status: RoomStatus; type: string; rate: number };
-export type Guest = { name: string; room: string; adults: number; kids: number; checkout: string; idProof: string; rate: number; gst: number };
-export type Charge = { id: string; label: string; amount: number };
+export type Room = {
+  number: string;
+  floor: number;
+  status: RoomStatus;
+  type: string;
+  rate: number;
+};
 
-const demoStatuses: RoomStatus[] = ['available', 'available', 'available', 'occupied', 'dirty', 'available', 'maintenance', 'available', 'blocked', 'occupied'];
+export type Guest = {
+  name: string;
+  room: string;
+  adults: number;
+  kids: number;
+  checkout: string;
+  idProof: string;
+  rate: number;
+  gst: number;
+};
+
+export type Charge = {
+  id: string;
+  label: string;
+  amount: number;
+};
+
+const statusCycle: RoomStatus[] = [
+  'available', 'available', 'available', 'occupied', 'dirty',
+  'available', 'maintenance', 'available', 'blocked', 'occupied',
+];
+
+const statusOverrides: Record<string, RoomStatus> = {
+  '101': 'occupied', '102': 'available', '103': 'dirty', '104': 'occupied',
+  '202': 'occupied', '203': 'maintenance', '302': 'occupied',
+};
 
 export const rooms: Room[] = Array.from({ length: 50 }, (_, index) => {
   const floor = Math.floor(index / 10) + 1;
   const roomOnFloor = (index % 10) + 1;
   const number = `${floor}${roomOnFloor.toString().padStart(2, '0')}`;
-  const statusOverrides: Record<string, RoomStatus> = { '101': 'occupied', '102': 'available', '103': 'dirty', '104': 'occupied', '202': 'occupied', '203': 'maintenance', '302': 'occupied' };
-  return { number, floor, status: statusOverrides[number] ?? demoStatuses[index % demoStatuses.length], type: roomOnFloor % 4 === 0 ? 'Suite' : roomOnFloor % 2 === 0 ? 'Deluxe Twin' : 'Deluxe King', rate: 1200 + floor * 100 + roomOnFloor * 25 };
+  return {
+    number,
+    floor,
+    status: statusOverrides[number] ?? statusCycle[index % statusCycle.length],
+    type: roomOnFloor % 4 === 0 ? 'Suite' : roomOnFloor % 2 === 0 ? 'Deluxe Twin' : 'Deluxe King',
+    rate: 1200 + floor * 100 + roomOnFloor * 25,
+  };
 });
 
 export const guests: Guest[] = [
@@ -26,5 +60,13 @@ export const starterCharges: Charge[] = [
   { id: 'laundry', label: 'Laundry', amount: 250 },
 ];
 
-export const statusLabels: Record<RoomStatus, string> = { available: 'Available', occupied: 'Occupied', dirty: 'Dirty', maintenance: 'Maintenance', blocked: 'Blocked' };
-export const money = (value: number) => `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+export const statusLabels: Record<RoomStatus, string> = {
+  available: 'Available',
+  occupied: 'Occupied',
+  dirty: 'Dirty',
+  maintenance: 'Maintenance',
+  blocked: 'Blocked',
+};
+
+export const money = (value: number) =>
+  `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
