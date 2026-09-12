@@ -2,16 +2,10 @@ import { useEffect, useState } from 'react';
 import { DashboardPage } from '@/routes/dashboard';
 import { CheckInPage } from '@/routes/check-in';
 import { CheckOutPage } from '@/routes/check-out';
-import { RootLayout } from '@/routes/__root';
+import { RootLayout } from '@/components/layout';
+import { getRoute } from '@/config/routes';
 
 type Route = 'dashboard' | 'check-in' | 'check-out' | 'booking';
-
-function getRoute(pathname: string): Route {
-  if (pathname === '/check-in') return 'check-in';
-  if (pathname === '/check-out') return 'check-out';
-  if (pathname === '/booking') return 'booking';
-  return 'dashboard';
-}
 
 function App() {
   const [path, setPath] = useState(window.location.pathname);
