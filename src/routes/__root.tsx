@@ -76,8 +76,9 @@ export function PageHeader({ title, subtitle, search = true, children }: PageHea
       <div className="header-tools">
         {search && (
           <label className="global-search">
-            <Search size={17} />
-            <input placeholder="Search guest, room or booking" />
+            <Search size={17} aria-hidden="true" />
+            <span className="sr-only">Search guest, room or booking</span>
+            <input aria-label="Search guest, room or booking" placeholder="Search guest, room or booking" />
           </label>
         )}
         {children}
