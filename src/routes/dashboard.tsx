@@ -73,7 +73,9 @@ export function DashboardPage({ isBooking }: DashboardPageProps) {
         </PageHeader>
 
         <div className="booking-placeholder panel">
-          <div className="empty-icon"><CalendarCheck /></div>
+          <div className="empty-icon">
+            <CalendarCheck />
+          </div>
           <h2>Booking desk</h2>
           <p>
             This demo build keeps booking separate from hotel operations.
@@ -154,7 +156,9 @@ export function DashboardPage({ isBooking }: DashboardPageProps) {
                   }
                 }}
               >
-                <span className="quick-icon"><action.icon size={18} /></span>
+                <span className="quick-icon">
+                  <action.icon size={18} />
+                </span>
                 <span>{action.label}</span>
                 <ChevronRight size={14} />
               </a>
@@ -178,7 +182,9 @@ export function DashboardPage({ isBooking }: DashboardPageProps) {
               </div>
             </div>
             <div>
-              <p className="big-number">{rooms.length}<small> rooms</small></p>
+              <p className="big-number">
+                {rooms.length}<small> rooms</small>
+              </p>
               <span className="muted">Total inventory</span>
               <div className="legend-list">
                 <span><i className="dot available" /> Available <b>{counts.available}</b></span>

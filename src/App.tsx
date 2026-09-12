@@ -23,7 +23,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (path === '/') window.history.replaceState({}, '', '/dashboard');
+    if (path === '/') {
+      window.history.replaceState({}, '', '/dashboard');
+    }
   }, [path]);
 
   const route = getRoute(path);

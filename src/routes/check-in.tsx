@@ -90,7 +90,11 @@ export function CheckInPage() {
                 </div>
 
                 <Field label="Rent">
-                  <input type="number" value={rate} onChange={(event) => setRate(Number(event.target.value))} />
+                  <input
+                    type="number"
+                    value={rate}
+                    onChange={(event) => setRate(Number(event.target.value))}
+                  />
                 </Field>
                 <Field label="GST">
                   <input value={gst} readOnly />
@@ -99,10 +103,18 @@ export function CheckInPage() {
                   <input value={name} onChange={(event) => setName(event.target.value)} />
                 </Field>
                 <Field label="Adults">
-                  <input type="number" value={adults} onChange={(event) => setAdults(Number(event.target.value))} />
+                  <input
+                    type="number"
+                    value={adults}
+                    onChange={(event) => setAdults(Number(event.target.value))}
+                  />
                 </Field>
                 <Field label="Kids">
-                  <input type="number" value={kids} onChange={(event) => setKids(Number(event.target.value))} />
+                  <input
+                    type="number"
+                    value={kids}
+                    onChange={(event) => setKids(Number(event.target.value))}
+                  />
                 </Field>
                 <Field label="Checkout date">
                   <input type="date" defaultValue={selected.checkout} />
@@ -115,13 +127,22 @@ export function CheckInPage() {
                 </div>
 
                 <Field label="Additional charges">
-                  <input type="number" value={extra} onChange={(event) => setExtra(Number(event.target.value))} />
+                  <input
+                    type="number"
+                    value={extra}
+                    onChange={(event) => setExtra(Number(event.target.value))}
+                  />
                 </Field>
 
                 <div className="detail-actions">
-                  <button className="button ghost"><Trash2 size={15} /> Delete</button>
+                  <button className="button ghost">
+                    <Trash2 size={15} /> Delete
+                  </button>
                   <button className="button secondary">Edit details</button>
-                  <button className="button primary" onClick={() => showToast('Guest details updated')}>
+                  <button
+                    className="button primary"
+                    onClick={() => showToast('Guest details updated')}
+                  >
                     <Check size={15} /> Update
                   </button>
                 </div>
@@ -142,8 +163,15 @@ export function CheckInPage() {
               <table>
                 <thead>
                   <tr>
-                    <th>Room</th><th>Rent</th><th>GST</th><th>Guest name</th>
-                    <th>Adults</th><th>Kids</th><th>Checkout</th><th>ID proof</th><th />
+                    <th>Room</th>
+                    <th>Rent</th>
+                    <th>GST</th>
+                    <th>Guest name</th>
+                    <th>Adults</th>
+                    <th>Kids</th>
+                    <th>Checkout</th>
+                    <th>ID proof</th>
+                    <th />
                   </tr>
                 </thead>
                 <tbody>
@@ -156,9 +184,16 @@ export function CheckInPage() {
                       <td>{guest.adults}</td>
                       <td>{guest.kids}</td>
                       <td>{guest.checkout}</td>
-                      <td><span className="file-name"><FileText size={14} />{guest.idProof}</span></td>
                       <td>
-                        <button className="table-action" onClick={() => chooseGuest(guest)}>
+                        <span className="file-name">
+                          <FileText size={14} />{guest.idProof}
+                        </span>
+                      </td>
+                      <td>
+                        <button
+                          className="table-action"
+                          onClick={() => chooseGuest(guest)}
+                        >
                           Edit
                         </button>
                       </td>

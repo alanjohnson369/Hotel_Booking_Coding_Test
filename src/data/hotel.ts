@@ -25,25 +25,45 @@ export type Charge = {
   amount: number;
 };
 
+export const statusLabels: Record<RoomStatus, string> = {
+  available: 'Available',
+  occupied: 'Occupied',
+  dirty: 'Dirty',
+  maintenance: 'Maintenance',
+  blocked: 'Blocked',
+};
+
 const statusCycle: RoomStatus[] = [
   'available', 'available', 'available', 'occupied', 'dirty',
   'available', 'maintenance', 'available', 'blocked', 'occupied',
 ];
 
 const statusOverrides: Record<string, RoomStatus> = {
-  '101': 'occupied', '102': 'available', '103': 'dirty', '104': 'occupied',
-  '202': 'occupied', '203': 'maintenance', '302': 'occupied',
+  '101': 'occupied',
+  '102': 'available',
+  '103': 'dirty',
+  '104': 'occupied',
+  '202': 'occupied',
+  '203': 'maintenance',
+  '302': 'occupied',
 };
+
+function getRoomType(indexOnFloor: number): string {
+  if (indexOnFloor % 4 === 0) return 'Suite';
+  if (indexOnFloor % 2 === 0) return 'Deluxe Twin';
+  return 'Deluxe King';
+}
 
 export const rooms: Room[] = Array.from({ length: 50 }, (_, index) => {
   const floor = Math.floor(index / 10) + 1;
   const roomOnFloor = (index % 10) + 1;
   const number = `${floor}${roomOnFloor.toString().padStart(2, '0')}`;
+
   return {
     number,
     floor,
     status: statusOverrides[number] ?? statusCycle[index % statusCycle.length],
-    type: roomOnFloor % 4 === 0 ? 'Suite' : roomOnFloor % 2 === 0 ? 'Deluxe Twin' : 'Deluxe King',
+    type: getRoomType(roomOnFloor),
     rate: 1200 + floor * 100 + roomOnFloor * 25,
   };
 });
@@ -59,14 +79,6 @@ export const starterCharges: Charge[] = [
   { id: 'minibar', label: 'Mini-bar', amount: 100 },
   { id: 'laundry', label: 'Laundry', amount: 250 },
 ];
-
-export const statusLabels: Record<RoomStatus, string> = {
-  available: 'Available',
-  occupied: 'Occupied',
-  dirty: 'Dirty',
-  maintenance: 'Maintenance',
-  blocked: 'Blocked',
-};
 
 export const money = (value: number) =>
   `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;

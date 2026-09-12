@@ -180,3 +180,4 @@ This project is open source and available under the **MIT License**.
 
 - [lucide-react](https://lucide.dev) for the icon set
 - [DM Sans](https://fonts.google.com/specimen/DM+Sans) & [Manrope](https://fonts.google.com/specimen/Manrope) from Google Fonts
+- Built with [Vite](https://vitejs.dev)

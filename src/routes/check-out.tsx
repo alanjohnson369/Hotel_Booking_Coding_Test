@@ -14,6 +14,8 @@ const initialCharges: Record<string, Charge[]> = {
   '202': [],
 };
 
+const NIGHTS = 2;
+
 export function CheckOutPage() {
   const [selectedRooms, setSelectedRooms] = useState<string[]>(['101']);
   const [charges, setCharges] = useState<Record<string, Charge[]>>(initialCharges);
@@ -25,7 +27,8 @@ export function CheckOutPage() {
     () =>
       selectedGuests.reduce(
         (sum, guest) =>
-          sum + guest.rate * 2 + (charges[guest.room] ?? []).reduce((total, charge) => total + charge.amount, 0),
+          sum + guest.rate * NIGHTS
+            + (charges[guest.room] ?? []).reduce((acc, charge) => acc + charge.amount, 0),
         0,
       ),
     [selectedGuests, charges],
@@ -100,7 +103,9 @@ export function CheckOutPage() {
 
             <div className="stay-table">
               <div className="stay-head">
-                <span>Room</span><span>Stay dates</span><span>Actions</span>
+                <span>Room</span>
+                <span>Stay dates</span>
+                <span>Actions</span>
               </div>
               {guests.slice(0, 3).map((guest) => (
                 <label className="stay-row" key={guest.room}>
@@ -134,14 +139,14 @@ export function CheckOutPage() {
               selectedGuests.map((guest) => {
                 const roomCharges = charges[guest.room] ?? [];
                 const roomTotal =
-                  guest.rate * 2 + roomCharges.reduce((sum, charge) => sum + charge.amount, 0);
+                  guest.rate * NIGHTS + roomCharges.reduce((sum, charge) => sum + charge.amount, 0);
 
                 return (
                   <div className="room-bill" key={guest.room}>
                     <div className="room-bill-head">
                       <div>
                         <h3>Room {guest.room}</h3>
-                        <span>2 nights × {money(guest.rate)} room rate</span>
+                        <span>{NIGHTS} nights × {money(guest.rate)} room rate</span>
                       </div>
                       <strong>{money(roomTotal)}</strong>
                     </div>
@@ -149,7 +154,10 @@ export function CheckOutPage() {
                     <div className="charge-tools">
                       <span>Additional charges</span>
                       {chargePresets.map((preset) => (
-                        <button key={preset.id} onClick={() => addCharge(guest.room, preset)}>
+                        <button
+                          key={preset.id}
+                          onClick={() => addCharge(guest.room, preset)}
+                        >
                           <Plus size={14} /> {preset.label}
                         </button>
                       ))}
@@ -158,13 +166,16 @@ export function CheckOutPage() {
                     <div className="charge-list">
                       <div>
                         <span>Room stay</span>
-                        <b>{money(guest.rate * 2)}</b>
+                        <b>{money(guest.rate * NIGHTS)}</b>
                       </div>
                       {roomCharges.map((charge) => (
                         <div key={charge.id}>
                           <span>
                             {charge.label}
-                            <button className="remove-charge" onClick={() => removeCharge(guest.room, charge.id)}>
+                            <button
+                              className="remove-charge"
+                              onClick={() => removeCharge(guest.room, charge.id)}
+                            >
                               <Trash2 size={12} />
                             </button>
                           </span>
