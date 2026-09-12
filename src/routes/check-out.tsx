@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
 import { Check, FileText, Plus, Search, Trash2 } from 'lucide-react';
-import { guests, money, starterCharges, type Charge } from '@/data/hotel';
-import { PageHeader, PanelTitle, Toast } from '@/routes/__root';
+import { money } from '@/data/format';
+import { guests, starterCharges } from '@/data/fixtures';
+import type { Charge } from '@/data/types';
+import { PageHeader, PanelTitle, Toast } from '@/components/layout';
 
 const chargePresets: Charge[] = [
   { id: 'minibar', label: 'Mini-bar', amount: 100 },

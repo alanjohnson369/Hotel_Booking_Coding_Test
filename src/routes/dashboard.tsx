@@ -4,8 +4,10 @@ import {
   DoorOpen, FileBarChart, Grid2X2, Hammer, KeyRound, Plus, Search,
   Settings, ShoppingBag, Users, Wrench,
 } from 'lucide-react';
-import { money, rooms, statusLabels, type RoomStatus } from '@/data/hotel';
-import { PageHeader, Toast } from '@/routes/__root';
+import { money } from '@/data/format';
+import { rooms, statusLabels } from '@/data/fixtures';
+import type { RoomStatus } from '@/data/types';
+import { PageHeader, Toast } from '@/components/layout';
 
 const quickActions = [
   { label: 'Check-in', icon: DoorOpen, href: '/check-in' },

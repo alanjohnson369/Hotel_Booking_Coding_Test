@@ -2,8 +2,10 @@ import { useState } from 'react';
 import {
   CalendarDays, Check, FileText, Search, Trash2, Upload, UserPlus,
 } from 'lucide-react';
-import { guests, money, type Guest } from '@/data/hotel';
-import { Field, PageHeader, PanelTitle, Toast } from '@/routes/__root';
+import { money } from '@/data/format';
+import { guests } from '@/data/fixtures';
+import type { Guest } from '@/data/types';
+import { Field, PageHeader, PanelTitle, Toast } from '@/components/layout';
 
 export function CheckInPage() {
   const [selected, setSelected] = useState<Guest>(guests[0]);
