@@ -4,8 +4,6 @@ import { navConfig } from '@/config/navigation';
 
 export type PageKey = 'dashboard' | 'check-in' | 'check-out' | 'booking';
 
-export type PageKey = 'dashboard' | 'check-in' | 'check-out' | 'booking';
-
 type RootLayoutProps = {
   active: PageKey;
   children: ReactNode;

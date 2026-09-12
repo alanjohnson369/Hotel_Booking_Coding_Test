@@ -5,7 +5,8 @@ import {
   Settings, ShoppingBag, Users, Wrench,
 } from 'lucide-react';
 import { money } from '@/data/format';
-import { rooms, statusLabels, type RoomStatus } from '@/data/fixtures';
+import { rooms, statusLabels } from '@/data/fixtures';
+import type { RoomStatus } from '@/data/types';
 import { PageHeader, Toast } from '@/components/layout';
 
 const quickActions = [

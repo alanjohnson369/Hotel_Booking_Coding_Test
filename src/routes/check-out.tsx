@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Check, FileText, Plus, Search, Trash2 } from 'lucide-react';
 import { money } from '@/data/format';
-import { guests, starterCharges, type Charge } from '@/data/fixtures';
+import { guests, starterCharges } from '@/data/fixtures';
+import type { Charge } from '@/data/types';
 import { PageHeader, PanelTitle, Toast } from '@/components/layout';
 
 const chargePresets: Charge[] = [

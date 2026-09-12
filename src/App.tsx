@@ -5,8 +5,6 @@ import { CheckOutPage } from '@/routes/check-out';
 import { RootLayout } from '@/components/layout';
 import { getRoute } from '@/config/routes';
 
-type Route = 'dashboard' | 'check-in' | 'check-out' | 'booking';
-
 function App() {
   const [path, setPath] = useState(window.location.pathname);
 

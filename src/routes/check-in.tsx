@@ -3,7 +3,8 @@ import {
   CalendarDays, Check, FileText, Search, Trash2, Upload, UserPlus,
 } from 'lucide-react';
 import { money } from '@/data/format';
-import { guests, type Guest } from '@/data/fixtures';
+import { guests } from '@/data/fixtures';
+import type { Guest } from '@/data/types';
 import { Field, PageHeader, PanelTitle, Toast } from '@/components/layout';
 
 export function CheckInPage() {
